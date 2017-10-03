@@ -1,0 +1,75 @@
+<style type="text/css">
+	form {
+		text-align: center;
+	}
+	#banner {
+	background-color: #D8F1D3;
+	height: 92.5vh;
+	text-align: center;
+	padding-top: 5%
+}
+
+	input {
+		;
+	}
+</style>
+ 
+
+<% if flash[:errors]%>
+	<%= flash[:errors] %>
+<% end %>
+<% flash[:errors] = nil%>
+
+
+
+
+<div class="container-fluid" id="banner">
+  <div class="row">
+	<% if flash[:errors]%>
+		<%= flash[:errors] %>
+	<% end %>
+	<% flash[:errors] = nil%>
+    <div class="col">
+      	<form action="/lenders" method="post">
+			<fieldset>
+			<legend>Lender Registration</legend>
+			<%= token_tag nil %>
+			<label>First Name: </label>
+			<input type="text" name="lender[first]"><br><br>
+			<label>Last Name: </label>
+			<input type="text" name="lender[last]"><br><br>
+			<label>Email: </label>
+			<input type="text" name="lender[email]"><br><br>
+			<label>Password: </label>
+			<input type="password" name="lender[password]"><br><br>
+			<label>Money: </label>
+			<input type="number" step="500" value="5000" name="lender[money]"><br><br>
+			<a href="/login">Already a Lender?</a>
+			<input type="submit" value="Register">
+			</fieldset>
+		</form>
+    </div>
+    <div class="col">
+      <form action="/borrowers" method="post">
+		<legend>Borrower Registration</legend>
+		<%= token_tag nil %>
+		<label>First Name: </label>
+		<input type="text" name="borrower[first]"><br><br>
+		<label>Last Name: </label>
+		<input type="text" name="borrower[last]"><br><br>
+		<label>Email: </label>
+		<input type="text" name="borrower[email]"><br><br>
+		<label>Password: </label>
+		<input type="password" name="borrower[password]"><br><br>
+		<label>Reason: </label>
+		<input type="text" name="borrower[reason]"><br><br>
+		<label for="textarea">Description: </label>
+		<textarea id="textarea" rows="4" name="borrower[description]"></textarea><br><br>
+		<label>Amount Needed: </label>
+		<input type="hidden" value="0" name="borrower[raised]">
+		<input type="number" step="10" value="100" name="borrower[money]"><br><br>
+		<a href="/login">Already a Borrower?</a>
+		<input type="submit" value="Register">
+</form>
+    </div>
+  </div>

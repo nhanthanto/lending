@@ -1,0 +1,49 @@
+<style type="text/css">
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	td, th {
+		text-align: right;
+		padding: 5px;
+	}
+
+	#banner {
+	background-color: #D8F1D3;
+	height: 92.5vh;
+	text-align: center;
+	padding-top: 5%
+	}
+
+</style>
+
+<div class="container-fluid" id="banner">
+<fieldset id="binfo">
+	<legend>Information</legend>
+	<h3>Starter: <%= @borrower.first%></h3>
+	<h3>Cause: <%= @borrower.reason%></h3>
+	<h3>Amount Needed: <%= @borrower.money%></h3>
+	<h3>Amount Raised: <%= @borrower.raised%></h3>
+	<h3>Amount Left: <%= @borrower.money - @borrower.raised%></h3>
+</fieldset>
+
+<div id="grid">
+	<legend>People who funded you</legend>
+	<table style="margin: 0px auto;">
+		<tr>
+			<th>Name</th>
+			<th>Email</th> 
+			<th>Amount Funded</th>
+		</tr>
+		<% @trans.each do |t| %>
+		<tr>
+			<td><%= t.lender.first%> <%= t.lender.last%></td>
+			<td><%= t.lender.email%></td> 
+			<td><%= t.amount%></td>
+		</tr>
+		<%end%>
+	</table>
+</div>
+<a href="/logins/:id" data-method="delete"><button>Log Out</button></a>
+</div>

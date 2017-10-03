@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  lender: MyString
+  lender: one
+  borrower: MyString
+  borrower: one
+
+two:
+  amount: 1
+  lender: MyString
+  lender: two
+  borrower: MyString
+  borrower: two

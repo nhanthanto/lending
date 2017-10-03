@@ -1,0 +1,110 @@
+<style type="text/css">
+	fieldset {
+		display: inline-block;
+		float: left;
+	}
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	td, th {
+		text-align: right;
+		padding: 5px;
+	}
+	input[type="number"] {
+		width: 100px;
+	}
+	a {
+		float: right;
+	}
+	p {
+		display: inline-block;
+		float:right;
+	}
+	#banner {
+	background-color: #D8F1D3;
+	height: 92.5vh;
+	text-align: center;
+	padding-top: 5%
+	}
+	#left {
+		padding-left: 100px
+	}
+
+</style>
+<a href="/logins/:id" data-method="delete">Log Out</a>
+<% if flash[:errors]%>
+	<h3><%= flash[:errors] %></h3>
+<% end %>
+
+<% flash[:errors] = nil%>
+<div class="container-fluid" id="banner">
+<div>
+		<legend>Information</legend>
+		<h3>Lender: <%= @lender.first%></h3>
+		<h3>Account Balance: <%= @lender.money%></h3>
+</div>
+<div class="row">
+<div class="col" id="left">
+	<fieldset>
+	<legend>People in need of help</legend>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Reason</th> 
+			<th>Description</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Action</th>
+		</tr>
+		<% @borrower.each do |b| %>
+		<tr>
+			<td><%= b.first%></td>
+			<td><%= b.reason%></td> 
+			<td><%= b.description%></td>
+			<td><%= b.money%></td>
+			<td><%= b.raised%></td> 
+			<td>
+			<form action="/transactions" method="post">
+			<%= token_tag nil %>
+			<input type="number" step="10" value="100" name="transaction[amount]" size="5">
+			<input type="hidden" value="<%= @lender.id%>" name="transaction[lender_id]">	
+			<input type="hidden" value="<%= b.id%>" name="transaction[borrower_id]">
+			<input type="submit" value="Lend">
+			</form>	
+			</td>
+		</tr>
+		<% end%>
+	</table>
+</fieldset>
+</div>
+
+<div class="col">
+	<% if @trans %>
+	<fieldset id="minfo">
+		<legend>People You've Helped</legend>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Reason</th> 
+				<th>Description</th>
+				<th>Amount Needed</th>
+				<th>Amount Raised</th>
+				<th>Amount Lent by You</th>
+			</tr>
+			<% @trans.each do |t| %>
+			<tr>
+				<td><%= t.borrower.first%> <%= t.borrower.last%></td>
+				<td><%= t.borrower.reason%></td> 
+				<td><%= t.borrower.description%></td>
+				<td><%= t.borrower.money%></td>
+				<td><%= t.borrower.raised%></td> 
+				<td><%= t.amount%></td>
+			</tr>
+			<% end%>
+		</table>
+	</fieldset>
+<% end%>
+</div>
+</div>
+</div>

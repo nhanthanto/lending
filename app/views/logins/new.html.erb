@@ -1,0 +1,40 @@
+<style type="text/css">
+	form {
+		text-align: center;
+	}
+	#banner {
+	background-color: #D8F1D3;
+	height: 92.5vh;
+	text-align: center;
+	padding-top: 15%
+}
+
+</style>
+
+
+
+
+
+<div class="container-fluid" id="banner">	
+	<% if flash[:errors]%>
+	<h3>Incorrect Log In</h3>
+<% end %>
+<% flash[:errors] = nil%>
+		<form action="/login" method="post">
+			<fieldset>
+				<legend>Login</legend>
+				<%= token_tag nil %>
+				<label>Email: </label>
+				<input type="text" name="email"><br><br>
+				<label>Password: </label>
+				<input type="password" name="password"><br><br>
+				<a href="/register">Click here to Register</a>
+				<input type="submit" value="Login">
+			</fieldset>
+		</form>
+
+</div>
+
+
+
+

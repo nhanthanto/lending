@@ -1,0 +1,25 @@
+<style type="text/css">
+#banner {
+	background-color: #D8F1D3;
+	height: 92.5vh;
+	text-align: center;
+	padding-top: 15%
+}
+
+
+</style>
+
+<div class="container-fluid" id="banner">	
+    <h1>Benefactors</h1>
+		<% @borrower.each do |t| %>
+			<div>
+				<strong><%= t.reason%> by <%= t.first%> <%= t.last%></strong>
+			</div>
+		<%end%>
+
+
+
+
+
+
+</div>
