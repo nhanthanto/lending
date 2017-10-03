@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   post '/login' => 'logins#create'
 
-  delete '/logins/:id' => 'logins#destroy'
+  post '/logins/:id' => 'logins#destroy'
 
   #Borrower Routes
 
