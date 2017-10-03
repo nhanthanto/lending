@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   post '/login' => 'logins#create'
 
-  post '/logins/:id' => 'logins#destroy'
+  delete '/logins/:id' => 'logins#destroy'
 
   #Borrower Routes
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   # Welcome Pages
 
-  get '/' => 'welcome#index'
+  root 'welcome#index'
 
   get '/charities' => 'welcome#charities'
 
